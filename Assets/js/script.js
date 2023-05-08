@@ -1,6 +1,8 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
-// in the html.
+// in the html
+var currentHour = dayjs().hour()
+console.log (currentHour)
 
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
@@ -22,11 +24,33 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
   
+});
+// This function checks the current hours and checks it compares it to the hour
+// in all the time blocks to see which ones are are classed as past, present and
+// future
+function hourCheck (){
+  $('.time-block').each(function() {
+    var timeBlockHour = parseInt($(this).attr('id').split('-')[1]);
+
+    if (timeBlockHour < currentHour) {
+      $(this).addClass('past')
+    } else if (timeBlockHour === currentHour){
+      $(this).addClass('present')
+      $(this).removeClass('past')
+    } else {
+      $(this).removeClass('past')
+      $(this).removeClass('present')
+      $(this).addClass('future')
+    }
+    console.log(timeBlockHour)
+  })
+}
+hourCheck()
+
+
   function displayDay() {
     var today = dayjs().format('MMM DD, YYYY');
     document.getElementById('currentDay').textContent = today;
   console.log (today);
   }
   displayDay()
-
-});
