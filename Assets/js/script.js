@@ -48,6 +48,23 @@ function hourCheck (){
 hourCheck()
 
 
+  var saveBtn = $('button')
+  var todos = $('div')
+  var todoValue = $('textarea')
+
+  saveBtn.on('click', function (){
+   var key = this.parentElement.id;
+   var userTodo = todoValue.val();
+   localStorage.setItem(key,userTodo)
+   console.log ('Saved')
+   localStorage.getItem(key,userTodo)
+
+
+    
+  })
+
+
+
   function displayDay() {
     var today = dayjs().format('MMM DD, YYYY');
     document.getElementById('currentDay').textContent = today;
