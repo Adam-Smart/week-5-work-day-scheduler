@@ -47,23 +47,22 @@ function hourCheck (){
 }
 hourCheck()
 
-
-  var saveBtn = $('button')
+var saveBtn = $('button')
   var todos = $('div')
   var todoValue = $('textarea')
 
   saveBtn.on('click', function (){
    var key = this.parentElement.id;
-   var userTodo = todoValue.val();
-   localStorage.setItem(key,userTodo)
+   var todoValue = $(this).siblings('.description').val();
+   localStorage.setItem(key,todoValue)
    console.log ('Saved')
-   localStorage.getItem(key,userTodo)
 
-
+   console.log (key, todoValue)
     
   })
 
 
+  
 
   function displayDay() {
     var today = dayjs().format('MMM DD, YYYY');
